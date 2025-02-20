@@ -35,6 +35,17 @@ window.onload = async function() {
     let container_element = document.querySelector("#movie_player")
     let bottom_bar = document.querySelector("#movie_player > div.ytp-chrome-bottom")
 
+    let elements_to_resize = [
+        document.querySelector("#movie_player > div.html5-video-container > video"),
+        document.querySelector("#movie_player > div.html5-video-container"),
+        document.querySelector("#movie_player"),
+        document.querySelector("#container"),
+        document.querySelector("#ytd-player"),
+        document.querySelector("#player-container"),
+        document.querySelector("#player-container-inner"),
+        document.querySelector("#player-container-outer")
+    ]
+
     // Inject the resizer element
     inject_resizer_element(container_element)
     let resizer_element = document.querySelector("#resizer-element")
@@ -58,8 +69,12 @@ window.onload = async function() {
         let width = startWidth + (e.clientX - startX);
         let height = Math.floor( width / width_height_ratio )
 
-        video_element.style.width = width + 'px';
-        video_element.style.height = height + 'px';
+        for (let el of elements_to_resize) {
+            el.style.width = width + 'px';
+            el.style.height = height + 'px';
+        }
+
+        bottom_bar.style.width = width-24 + 'px';
     }
       
     function stopResize() {
