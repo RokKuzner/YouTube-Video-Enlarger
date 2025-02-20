@@ -2,7 +2,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-window.onload = async function() {
+async function await_loaded_video() {
     while (
         // While the video element is not loaded
         document.querySelector("#movie_player > div.html5-video-container > video") == null || 
@@ -14,6 +14,10 @@ window.onload = async function() {
     ) {
         await sleep(100)
     }
+}
+
+window.onload = async function() {
+    await await_loaded_video()
 
     console.log("LOADED")
 };
