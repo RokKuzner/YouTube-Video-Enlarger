@@ -62,11 +62,8 @@ window.onload = async function() {
         document.addEventListener('mousemove', resize);
         document.addEventListener('mouseup', stopResize);
     });
-      
-    function resize(e) {
-        if (!isResizing) return;
 
-        let width = startWidth + (e.clientX - startX);
+    function resize_elements(width) {
         let height = Math.floor( width / width_height_ratio )
 
         for (let el of elements_to_resize) {
@@ -75,6 +72,13 @@ window.onload = async function() {
         }
 
         bottom_bar.style.width = width-24 + 'px';
+    }
+      
+    function resize(e) {
+        if (!isResizing) return;
+
+        let width = startWidth + (e.clientX - startX);
+        resize_elements(width)
     }
       
     function stopResize() {
