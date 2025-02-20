@@ -13,5 +13,8 @@
         "css": ["styles.css"],
         "js": ["script.js"]
       }
-    ]
+    ],
+    "icons": {
+        "128": "icon.png"
+    }
   }
