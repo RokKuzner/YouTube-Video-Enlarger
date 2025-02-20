@@ -33,7 +33,10 @@ window.onload = async function() {
     // Get all necesary elements
     let video_element = document.querySelector("#movie_player > div.html5-video-container > video")
     let container_element = document.querySelector("#movie_player")
+
     let bottom_bar = document.querySelector("#movie_player > div.ytp-chrome-bottom")
+    let max_bottom_bar_width = Number(window.getComputedStyle(bottom_bar).width.slice(0, -2))
+
     let side_content = document.querySelector("#secondary")
 
     let elements_to_resize = [
