@@ -39,6 +39,10 @@ window.onload = async function() {
     inject_resizer_element(container_element)
     let resizer_element = document.querySelector("#resizer-element")
 
+    // Get the video width:height ratio
+    width_height_ratio = Number(video_element.style.width.slice(0, -2)) / Number(video_element.style.height.slice(0, -2))
+    console.log("WHR:", width_height_ratio)
+
     // Implement the resizing
     resizer_element.addEventListener('mousedown', (e) => {
         isResizing = true;
@@ -50,8 +54,12 @@ window.onload = async function() {
       
     function resize(e) {
         if (!isResizing) return;
-        const width = startWidth + (e.clientX - startX);
+
+        let width = startWidth + (e.clientX - startX);
+        let height = Math.floor( width / width_height_ratio )
+
         video_element.style.width = width + 'px';
+        video_element.style.height = height + 'px';
     }
       
     function stopResize() {
