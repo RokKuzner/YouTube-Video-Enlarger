@@ -76,8 +76,6 @@ window.onload = async function() {
             el.style.width = width + 'px';
             el.style.height = height + 'px';
         }
-
-        bottom_bar.style.width = width-24 + 'px';
     }
       
     function resize(e) {
