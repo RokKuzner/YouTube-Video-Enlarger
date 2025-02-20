@@ -1,0 +1,10 @@
+#resizer-element {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 5px; /* Width of the resizer bar */
+    background-color: #ddd;
+    cursor: ew-resize; /* Cursor changes on hover */
+}
