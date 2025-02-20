@@ -1,3 +1,7 @@
+let isResizing = false;
+let currentX;
+let initialWidth;
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -16,8 +20,22 @@ async function await_loaded_video() {
     }
 }
 
+function inject_resizer_element(parent) {
+    let resizer_element_div = document.createElement("div")
+    resizer_element_div.id = "resizer-element"
+    parent.appendChild(resizer_element_div)
+}
+
 window.onload = async function() {
+    // Wait for the page to be fully loaded
     await await_loaded_video()
 
-    console.log("LOADED")
+    // Get all necesary elements
+    let video_element = document.querySelector("#movie_player > div.html5-video-container > video")
+    let container_element = document.querySelector("#movie_player")
+    let bottom_bar = document.querySelector("#movie_player > div.ytp-chrome-bottom")
+
+    // Inject the resizer element
+    inject_resizer_element(container_element)
+    let resizer_element = document.querySelector("#resizer-element")
 };
