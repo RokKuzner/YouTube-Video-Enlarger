@@ -1,6 +1,6 @@
 let isResizing = false;
-let currentX;
-let initialWidth;
+let startX;
+let startWidth;
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -38,4 +38,25 @@ window.onload = async function() {
     // Inject the resizer element
     inject_resizer_element(container_element)
     let resizer_element = document.querySelector("#resizer-element")
+
+    // Implement the resizing
+    resizer_element.addEventListener('mousedown', (e) => {
+        isResizing = true;
+        startX = e.clientX;
+        startWidth = video_element.offsetWidth;
+        document.addEventListener('mousemove', resize);
+        document.addEventListener('mouseup', stopResize);
+    });
+      
+    function resize(e) {
+        if (!isResizing) return;
+        const width = startWidth + (e.clientX - startX);
+        video_element.style.width = width + 'px';
+    }
+      
+    function stopResize() {
+        isResizing = false;
+        document.removeEventListener('mousemove', resize);
+        document.removeEventListener('mouseup', stopResize);
+    }
 };
