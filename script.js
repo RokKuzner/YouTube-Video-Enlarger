@@ -34,6 +34,7 @@ window.onload = async function() {
     let video_element = document.querySelector("#movie_player > div.html5-video-container > video")
     let container_element = document.querySelector("#movie_player")
     let bottom_bar = document.querySelector("#movie_player > div.ytp-chrome-bottom")
+    let side_content = document.querySelector("#secondary")
 
     let elements_to_resize = [
         document.querySelector("#movie_player > div.html5-video-container > video"),
@@ -53,6 +54,11 @@ window.onload = async function() {
     // Get the video width:height ratio
     width_height_ratio = Number(video_element.style.width.slice(0, -2)) / Number(video_element.style.height.slice(0, -2))
     console.log("WHR:", width_height_ratio)
+
+    // Remove the side content
+    side_content.parentNode.removeChild(side_content)
+    // Adjust the elements to the new size
+    resize_elements( Number(window.getComputedStyle(container_element).width.slice(0, -2)) )
 
     // Implement the resizing
     resizer_element.addEventListener('mousedown', (e) => {
