@@ -1,0 +1,17 @@
+{
+    "manifest_version": 3,
+    "name": "YT Video Enlarger",
+    "version": "1.0",
+    "description": "Allows you to resize the YouTube video window while not in full-screen mode.",
+    "permissions": [
+      "activeTab",
+      "scripting"
+    ],
+    "content_scripts": [
+      {
+        "matches": ["https://www.youtube.com/watch"],
+        "css": ["styles.css"],
+        "js": ["script.js"]
+      }
+    ]
+  }
