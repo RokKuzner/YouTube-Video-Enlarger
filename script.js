@@ -65,6 +65,9 @@ window.onload = async function() {
     // Adjust the elements to the new size
     resize_elements( Number(window.getComputedStyle(container_element).width.slice(0, -2)) )
 
+    // Change the width of bottom content
+    bottom_content.style.width = `${min_video_width}px`
+
     // Implement the resizing
     resizer_element.addEventListener('mousedown', (e) => {
         isResizing = true;
