@@ -35,6 +35,8 @@ window.onload = async function() {
     let container_element = document.querySelector("#movie_player")
     let bottom_bar = document.querySelector("#movie_player > div.ytp-chrome-bottom")
     let side_content = document.querySelector("#secondary")
+    let bottom_content = document.querySelector("#below")
+    let player_element = document.querySelector("#player")
 
     let elements_to_resize = [
         document.querySelector("#movie_player > div.html5-video-container > video"),
@@ -73,7 +75,7 @@ window.onload = async function() {
     });
 
     function resize_elements(width) {
-        if (width < min_video_width) {return}
+        if (width < min_video_width) {width = min_video_width}
 
         let height = Math.floor( width / width_height_ratio )
 
@@ -81,6 +83,8 @@ window.onload = async function() {
             el.style.width = width + 'px';
             el.style.height = height + 'px';
         }
+
+        position_bottom_elements()
     }
       
     function resize(e) {
@@ -94,5 +98,10 @@ window.onload = async function() {
         isResizing = false;
         document.removeEventListener('mousemove', resize);
         document.removeEventListener('mouseup', stopResize);
+    }
+
+    function position_bottom_elements() {
+        let top_value = player_element.offsetTop + player_element.offsetHeight + 10
+        bottom_content.style.top = `${top_value}px`
     }
 };
