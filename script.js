@@ -32,11 +32,8 @@ window.onload = async function() {
 
     // Get all necesary elements
     let video_element = document.querySelector("#movie_player > div.html5-video-container > video")
-    let min_video_width = Number(window.getComputedStyle(video_element).width.slice(0, -2))
     let container_element = document.querySelector("#movie_player")
-
     let bottom_bar = document.querySelector("#movie_player > div.ytp-chrome-bottom")
-
     let side_content = document.querySelector("#secondary")
 
     let elements_to_resize = [
@@ -49,6 +46,9 @@ window.onload = async function() {
         document.querySelector("#player-container-inner"),
         document.querySelector("#player-container-outer")
     ]
+
+    // Get all necesary values
+    let min_video_width = Number(window.getComputedStyle(video_element).width.slice(0, -2))
 
     // Inject the resizer element
     inject_resizer_element(container_element)
@@ -74,7 +74,7 @@ window.onload = async function() {
 
     function resize_elements(width) {
         if (width < min_video_width) {return}
-        
+
         let height = Math.floor( width / width_height_ratio )
 
         for (let el of elements_to_resize) {
