@@ -85,6 +85,7 @@ window.onload = async function() {
         }
 
         position_bottom_elements()
+        position_bottom_bar()
     }
       
     function resize(e) {
@@ -103,5 +104,14 @@ window.onload = async function() {
     function position_bottom_elements() {
         let top_value = player_element.offsetTop + player_element.offsetHeight + 10
         bottom_content.style.top = `${top_value}px`
+    }
+
+    function position_bottom_bar() {
+        let bottom_bar_width = bottom_bar.offsetWidth
+        let video_player_width = player_element.offsetWidth
+        
+        let bottom_bar_left_value = Math.floor( ( video_player_width - bottom_bar_width ) / 2 )
+
+        bottom_bar.style.left = `${bottom_bar_left_value}px`
     }
 };
