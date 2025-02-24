@@ -1,3 +1,7 @@
+body {
+    overflow-x: hidden;
+}
+
 #resizer-element {
     position: absolute;
     z-index: 10;
