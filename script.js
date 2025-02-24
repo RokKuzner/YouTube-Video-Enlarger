@@ -2,31 +2,73 @@ let isResizing = false;
 let startX;
 let startWidth;
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function await_loaded_video() {
-    while (
-        // While the video element is not loaded
-        document.querySelector("#movie_player > div.html5-video-container > video") == null || 
-
-        // Wile the width of the video element isn't specifically set in pixels
-        window.getComputedStyle(document.querySelector("#movie_player > div.html5-video-container > video")).width.substring(
-            window.getComputedStyle(document.querySelector("#movie_player > div.html5-video-container > video")).width.length-2
-        ) != "px"
-    ) {
-        await sleep(100)
-    }
-}
-
-function inject_resizer_element(parent) {
-    let resizer_element_div = document.createElement("div")
-    resizer_element_div.id = "resizer-element"
-    parent.appendChild(resizer_element_div)
-}
-
 window.onload = async function() {
+    // Define functions
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function await_loaded_video() {
+        while (
+            // While the video element is not loaded
+            document.querySelector("#movie_player > div.html5-video-container > video") == null || 
+    
+            // Wile the width of the video element isn't specifically set in pixels
+            window.getComputedStyle(document.querySelector("#movie_player > div.html5-video-container > video")).width.substring(
+                window.getComputedStyle(document.querySelector("#movie_player > div.html5-video-container > video")).width.length-2
+            ) != "px"
+        ) {
+            await sleep(100)
+        }
+    }
+    
+    function inject_resizer_element(parent) {
+        let resizer_element_div = document.createElement("div")
+        resizer_element_div.id = "resizer-element"
+        parent.appendChild(resizer_element_div)
+    }
+    
+    function resize_elements(width) {
+        if (width < min_video_width) {width = min_video_width}
+    
+        let height = Math.floor( width / width_height_ratio )
+    
+        for (let el of elements_to_resize) {
+            el.style.width = width + 'px';
+            el.style.height = height + 'px';
+        }
+    
+        position_bottom_elements()
+        position_bottom_bar()
+    }
+    
+    function resize(e) {
+        if (!isResizing) return;
+    
+        let width = startWidth + (e.clientX - startX);
+        resize_elements(width)
+    }
+    
+    function stopResize() {
+        isResizing = false;
+        document.removeEventListener('mousemove', resize);
+        document.removeEventListener('mouseup', stopResize);
+    }
+    
+    function position_bottom_elements() {
+        let top_value = player_element.offsetTop + player_element.offsetHeight + 10
+        bottom_content.style.top = `${top_value}px`
+    }
+    
+    function position_bottom_bar() {
+        let bottom_bar_width = bottom_bar.offsetWidth
+        let video_player_width = player_element.offsetWidth
+    
+        let bottom_bar_left_value = Math.floor( ( video_player_width - bottom_bar_width ) / 2 )
+    
+        bottom_bar.style.left = `${bottom_bar_left_value}px`
+    }
+
     // Wait for the page to be fully loaded
     await await_loaded_video()
 
@@ -76,45 +118,4 @@ window.onload = async function() {
         document.addEventListener('mousemove', resize);
         document.addEventListener('mouseup', stopResize);
     });
-
-    function resize_elements(width) {
-        if (width < min_video_width) {width = min_video_width}
-
-        let height = Math.floor( width / width_height_ratio )
-
-        for (let el of elements_to_resize) {
-            el.style.width = width + 'px';
-            el.style.height = height + 'px';
-        }
-
-        position_bottom_elements()
-        position_bottom_bar()
-    }
-      
-    function resize(e) {
-        if (!isResizing) return;
-
-        let width = startWidth + (e.clientX - startX);
-        resize_elements(width)
-    }
-      
-    function stopResize() {
-        isResizing = false;
-        document.removeEventListener('mousemove', resize);
-        document.removeEventListener('mouseup', stopResize);
-    }
-
-    function position_bottom_elements() {
-        let top_value = player_element.offsetTop + player_element.offsetHeight + 10
-        bottom_content.style.top = `${top_value}px`
-    }
-
-    function position_bottom_bar() {
-        let bottom_bar_width = bottom_bar.offsetWidth
-        let video_player_width = player_element.offsetWidth
-        
-        let bottom_bar_left_value = Math.floor( ( video_player_width - bottom_bar_width ) / 2 )
-
-        bottom_bar.style.left = `${bottom_bar_left_value}px`
-    }
 };
