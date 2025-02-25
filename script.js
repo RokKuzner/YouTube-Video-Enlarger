@@ -16,7 +16,9 @@ window.onload = async function() {
             // Wile the width of the video element isn't specifically set in pixels
             window.getComputedStyle(document.querySelector("#movie_player > div.html5-video-container > video")).width.substring(
                 window.getComputedStyle(document.querySelector("#movie_player > div.html5-video-container > video")).width.length-2
-            ) != "px"
+            ) != "px" ||
+
+            document.querySelector("#movie_player > div.html5-video-container > video").readyState < 2
         ) {
             await sleep(100)
         }
