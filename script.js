@@ -1,8 +1,9 @@
-let isResizing = false;
-let startX;
-let startWidth;
+window.onload = async function () {
 
-window.onload = async function() {
+    let isResizing = false;
+    let startX;
+    let startWidth;
+
     // Define functions
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -11,11 +12,11 @@ window.onload = async function() {
     async function await_loaded_video() {
         while (
             // While the video element is not loaded
-            document.querySelector("#movie_player > div.html5-video-container > video") == null || 
-    
+            document.querySelector("#movie_player > div.html5-video-container > video") == null ||
+
             // Wile the width of the video element isn't specifically set in pixels
             window.getComputedStyle(document.querySelector("#movie_player > div.html5-video-container > video")).width.substring(
-                window.getComputedStyle(document.querySelector("#movie_player > div.html5-video-container > video")).width.length-2
+                window.getComputedStyle(document.querySelector("#movie_player > div.html5-video-container > video")).width.length - 2
             ) != "px" ||
 
             document.querySelector("#movie_player > div.html5-video-container > video").readyState < 2
@@ -23,51 +24,51 @@ window.onload = async function() {
             await sleep(100)
         }
     }
-    
+
     function inject_resizer_element(parent) {
         let resizer_element_div = document.createElement("div")
         resizer_element_div.id = "resizer-element"
         parent.appendChild(resizer_element_div)
     }
-    
+
     function resize_elements(width) {
-        if (width < min_video_width) {width = min_video_width}
-    
-        let height = Math.floor( width / width_height_ratio )
-    
+        if (width < min_video_width) { width = min_video_width }
+
+        let height = Math.floor(width / width_height_ratio)
+
         for (let el of elements_to_resize) {
             el.style.width = width + 'px';
             el.style.height = height + 'px';
         }
-    
+
         position_bottom_elements()
         position_bottom_bar()
     }
-    
+
     function resize(e) {
         if (!isResizing) return;
-    
+
         let width = startWidth + (e.clientX - startX);
         resize_elements(width)
     }
-    
+
     function stopResize() {
         isResizing = false;
         document.removeEventListener('mousemove', resize);
         document.removeEventListener('mouseup', stopResize);
     }
-    
+
     function position_bottom_elements() {
         let top_value = player_element.offsetTop + player_element.offsetHeight + 10
         bottom_content.style.top = `${top_value}px`
     }
-    
+
     function position_bottom_bar() {
         let bottom_bar_width = bottom_bar.offsetWidth
         let video_player_width = player_element.offsetWidth
-    
-        let bottom_bar_left_value = Math.floor( ( video_player_width - bottom_bar_width ) / 2 )
-    
+
+        let bottom_bar_left_value = Math.floor((video_player_width - bottom_bar_width) / 2)
+
         bottom_bar.style.left = `${bottom_bar_left_value}px`
     }
 
@@ -102,12 +103,11 @@ window.onload = async function() {
 
     // Get the video width:height ratio
     width_height_ratio = Number(video_element.style.width.slice(0, -2)) / Number(video_element.style.height.slice(0, -2))
-    console.log("WHR:", width_height_ratio)
 
     // Remove the side content
     side_content.parentNode.removeChild(side_content)
     // Adjust the elements to the new size
-    resize_elements( Number(window.getComputedStyle(container_element).width.slice(0, -2)) )
+    resize_elements(Number(window.getComputedStyle(container_element).width.slice(0, -2)))
 
     // Change the width of bottom content
     bottom_content.style.width = `${min_video_width}px`
