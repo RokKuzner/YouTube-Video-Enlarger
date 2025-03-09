@@ -1,14 +1,7 @@
 async function initExtension() {
-
-    console.log("BEFORE VAR INIT")
-
     let isResizing = false;
     let startX;
     let startWidth;
-
-    console.log("AFTER VAR INIT")
-
-    console.log("BEFORE FUNCT INIT")
 
     // Define functions
     function sleep(ms) {
@@ -52,24 +45,16 @@ async function initExtension() {
     }
 
     function resize(e) {
-        console.log("RESIZING/MOUSEMOVE 1")
         if (!isResizing) return;
-
-        console.log("RESIZING/MOUSEMOVE 2")
 
         let width = startWidth + (e.clientX - startX);
         resize_elements(width)
-
-        console.log("RESIZING/MOUSEMOVE 3")
     }
 
     function stopResize() {
-        console.log("STOP RESIZING/MOUSEUP 1")
         isResizing = false;
         document.removeEventListener('mousemove', resize);
-        console.log("STOP RESIZING/MOUSEUP 2")
         document.removeEventListener('mouseup', stopResize);
-        console.log("STOP RESIZING/MOUSEUP 3")
     }
 
     function position_bottom_elements() {
@@ -86,13 +71,8 @@ async function initExtension() {
         bottom_bar.style.left = `${bottom_bar_left_value}px`
     }
 
-    console.log("AFTER FUNCT INIT")
-    console.log("Awaiting loaded video ...")
-
     // Wait for the page to be fully loaded
     await await_loaded_video()
-
-    console.log("Video loaded")
 
     // Get all necesary elements
     let video_element = document.querySelector("#movie_player > div.html5-video-container > video")
@@ -115,45 +95,31 @@ async function initExtension() {
 
     // Get all necesary values
     let min_video_width = Number(window.getComputedStyle(video_element).width.slice(0, -2))
-    console.log("Min video width:", min_video_width)
 
     // Inject the resizer element
-    console.log("BEFORE INJECTING RESIZER ELEMENT")
     inject_resizer_element(container_element)
-    console.log("AFTER INJECTING RESIZER ELEMENT")
     let resizer_element = document.querySelector("#resizer-element")
 
     // Get the video width:height ratio
-    console.log("BEFORE GETTING WH ratio")
     width_height_ratio = Number(video_element.style.width.slice(0, -2)) / Number(video_element.style.height.slice(0, -2))
-    console.log("AFTER GETTING WH ratio")
     console.log("WH ratio:", width_height_ratio)
 
     // Remove the side content
-    console.log("BEFORE REMOVING SIDE CONTENT")
     side_content.parentNode.removeChild(side_content)
-    console.log("AFTER REMOVING SIDE CONTENT")
     // Adjust the elements to the new size
-    console.log("BEFORE ADJUSTING ELEMENTS TO NEW SIZE")
     resize_elements(Number(window.getComputedStyle(container_element).width.slice(0, -2)))
-    console.log("AFTER ADJUSTING ELEMENTS TO NEW SIZE")
 
     // Change the width of bottom content
-    console.log("BEFORE CHANGING WIDTH OF BOTTOM CONTENT")
     bottom_content.style.width = `${min_video_width}px`
-    console.log("AFTER CHANGING WIDTH OF BOTTOM CONTENT")
 
     // Implement the resizing
-    console.log("BEFORE IMPLEMENTING RESIZING")
     resizer_element.addEventListener('mousedown', (e) => {
-        console.log("MOUSEDOWN!")
         isResizing = true;
         startX = e.clientX;
         startWidth = video_element.offsetWidth;
         document.addEventListener('mousemove', resize);
         document.addEventListener('mouseup', stopResize);
     });
-    console.log("AFTER IMPLEMENTING RESIZING")
 
 };
 
