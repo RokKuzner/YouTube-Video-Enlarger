@@ -133,6 +133,11 @@ async function initExtension() {
         document.addEventListener('mouseup', stopResize);
     });
 
+    // Resize elements every 0.5s for additional redundancy
+    setInterval(() => {
+        resize_elements(video_element.offsetWidth)
+    }, 500)
+
 };
 
 // Run on initial page load.
