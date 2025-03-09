@@ -40,6 +40,7 @@ async function initExtension() {
             el.style.height = height + 'px';
         }
 
+        position_playlist_elements()
         position_bottom_elements()
         position_bottom_bar()
     }
@@ -57,8 +58,15 @@ async function initExtension() {
         document.removeEventListener('mouseup', stopResize);
     }
 
-    function position_bottom_elements() {
+    function position_playlist_elements() {
+        if (!secondary_contnet_container) {return}
+
         let top_value = player_element.offsetTop + player_element.offsetHeight + 10
+        secondary_contnet_container.style.top = `${top_value}px`
+    }
+
+    function position_bottom_elements() {
+        let top_value = secondary_contnet_container.offsetTop + secondary_contnet_container.offsetHeight + 10
         bottom_content.style.top = `${top_value}px`
     }
 
