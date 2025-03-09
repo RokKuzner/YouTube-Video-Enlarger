@@ -32,3 +32,7 @@ body {
     position: absolute !important;
     z-index: 11 !important;
 }
+
+#playlist {
+    margin: 0 !important;
+}
