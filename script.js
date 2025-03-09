@@ -98,7 +98,7 @@ async function initExtension() {
     let video_element = document.querySelector("#movie_player > div.html5-video-container > video")
     let container_element = document.querySelector("#movie_player")
     let bottom_bar = document.querySelector("#movie_player > div.ytp-chrome-bottom")
-    let side_content = document.querySelector("#secondary")
+    let side_content = document.querySelector("#related")
     let bottom_content = document.querySelector("#below")
     let player_element = document.querySelector("#player")
 
