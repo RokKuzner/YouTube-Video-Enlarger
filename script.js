@@ -66,7 +66,10 @@ async function initExtension() {
     }
 
     function position_bottom_elements() {
-        let top_value = secondary_contnet_container.offsetTop + secondary_contnet_container.offsetHeight + 10
+        top_margin = 0
+        if (!secondary_contnet_container) {top_margin=10}
+    
+        let top_value = secondary_contnet_container.offsetTop + secondary_contnet_container.offsetHeight + top_margin
         bottom_content.style.top = `${top_value}px`
     }
 
