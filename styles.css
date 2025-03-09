@@ -27,6 +27,8 @@ body {
 }
 
 #secondary {
-    padding: 0;
-    margin: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: absolute !important;
+    z-index: 11 !important;
 }
