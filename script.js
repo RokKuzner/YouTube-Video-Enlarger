@@ -121,6 +121,9 @@ async function initExtension() {
     // Change the width of bottom content
     bottom_content.style.width = `${min_video_width}px`
 
+    // Change the width of playlist items
+    if (secondary_contnet_container) {secondary_contnet_container.style.width = `${min_video_width}px`}
+
     // Implement the resizing
     resizer_element.addEventListener('mousedown', (e) => {
         isResizing = true;
