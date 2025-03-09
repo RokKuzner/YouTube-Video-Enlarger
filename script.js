@@ -48,7 +48,7 @@ async function initExtension() {
     function resize(e) {
         if (!isResizing) return;
 
-        let width = startWidth + (e.clientX - startX);
+        let width = startWidth + (e.clientX - startX)*2;
         resize_elements(width)
     }
 
