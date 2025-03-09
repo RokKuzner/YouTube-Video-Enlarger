@@ -117,7 +117,7 @@ async function initExtension() {
     console.log("WH ratio:", width_height_ratio)
 
     // Remove the side content
-    related_videos_container.parentNode.removeChild(related_videos_container)
+    if (related_videos_container) {related_videos_container.parentNode.removeChild(related_videos_container)}
     // Adjust the elements to the new size
     resize_elements(Number(window.getComputedStyle(container_element).width.slice(0, -2)))
 
