@@ -78,7 +78,7 @@ async function initExtension() {
     let video_element = document.querySelector("#movie_player > div.html5-video-container > video")
     let container_element = document.querySelector("#movie_player")
     let bottom_bar = document.querySelector("#movie_player > div.ytp-chrome-bottom")
-    let side_content = document.querySelector("#related")
+    let related_videos_container = document.querySelector("#related")
     let bottom_content = document.querySelector("#below")
     let player_element = document.querySelector("#player")
 
@@ -105,7 +105,7 @@ async function initExtension() {
     console.log("WH ratio:", width_height_ratio)
 
     // Remove the side content
-    side_content.parentNode.removeChild(side_content)
+    related_videos_container.parentNode.removeChild(related_videos_container)
     // Adjust the elements to the new size
     resize_elements(Number(window.getComputedStyle(container_element).width.slice(0, -2)))
 
