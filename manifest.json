@@ -1,20 +1,18 @@
 {
-    "manifest_version": 3,
-    "name": "YT Video Enlarger",
-    "version": "1.0",
-    "description": "Allows you to resize the YouTube video window while not in full-screen mode.",
-    "permissions": [
-      "activeTab",
-      "scripting"
-    ],
-    "content_scripts": [
-      {
-        "matches": ["https://www.youtube.com/watch?v=*"],
-        "css": ["styles.css"],
-        "js": ["script.js"]
-      }
-    ],
-    "icons": {
-        "128": "icon.png"
-    }
+  "manifest_version": 3,
+  "name": "YT Video Enlarger",
+  "version": "1.0",
+  "description": "Allows you to resize the YouTube video window while not in full-screen mode.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "webNavigation",
+    "tabs"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+      "128": "icon.png"
   }
+}
