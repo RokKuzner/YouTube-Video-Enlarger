@@ -2,7 +2,7 @@
 
 chrome.webNavigation.onHistoryStateUpdated.addListener(function (details) {
     // Check if the URL is a YouTube video page
-    if (details.url.includes("youtube.com/watch")) {
+    if (details.url.includes("youtube.com/watch?v=")) {
         chrome.scripting.executeScript({
             target: { tabId: details.tabId },
             files: ['script.js']
