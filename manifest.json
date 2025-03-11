@@ -9,10 +9,13 @@
     "webNavigation",
     "tabs"
   ],
+  "host_permissions": [
+    "*://*.youtube.com/*"
+  ],
   "background": {
     "service_worker": "background.js"
   },
   "icons": {
-      "128": "icon.png"
+    "128": "icon.png"
   }
 }
