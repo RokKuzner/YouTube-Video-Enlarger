@@ -95,9 +95,9 @@ async function initExtension() {
     let player_element = document.querySelector("#player")
 
     let elements_to_resize = [
-        video_element,
+        document.querySelector("#movie_player > div.html5-video-container > video"),
         document.querySelector("#movie_player > div.html5-video-container"),
-        container_element,
+        document.querySelector("#movie_player"),
         document.querySelector("#container"),
         document.querySelector("#ytd-player"),
         document.querySelector("#player-container"),
@@ -142,5 +142,17 @@ async function initExtension() {
     }, 500)
 
 };
+
+// Check if the page is "fresh"
+if (!sessionStorage.getItem("videoEnlargerFreshPage") || sessionStorage.getItem("videoEnlargerFreshPage") == "false") {
+    sessionStorage.setItem("videoEnlargerFreshPage", "true") // Set videoEnlargerFreshPage to true
+
+    redirect_url = document.URL+"&videoEnlargerFreshPage=true"
+    console.log("Redirect to", redirect_url)
+    window.location.replace(redirect_url)
+} else {
+    sessionStorage.setItem("videoEnlargerFreshPage", "false") // Set videoEnlargerFreshPage to false
+    console.log("No redirect")
+}
 
 initExtension()
