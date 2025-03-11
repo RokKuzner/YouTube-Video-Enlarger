@@ -143,8 +143,4 @@ async function initExtension() {
 
 };
 
-// Run on initial page load.
-//window.addEventListener('load', () => {console.log("FROM load");initExtension});
-
-// Run on subsequent navigations.
-document.addEventListener('yt-navigate-finish', () => {console.log("FROM yt-navigate-finish");initExtension()});
+initExtension()
