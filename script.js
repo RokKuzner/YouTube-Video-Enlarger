@@ -95,9 +95,9 @@ async function initExtension() {
     let player_element = document.querySelector("#player")
 
     let elements_to_resize = [
-        document.querySelector("#movie_player > div.html5-video-container > video"),
+        video_element,
         document.querySelector("#movie_player > div.html5-video-container"),
-        document.querySelector("#movie_player"),
+        container_element,
         document.querySelector("#container"),
         document.querySelector("#ytd-player"),
         document.querySelector("#player-container"),
