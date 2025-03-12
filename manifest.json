@@ -5,17 +5,16 @@
   "description": "Allows you to resize the YouTube video window while not in full-screen mode.",
   "permissions": [
     "activeTab",
-    "scripting",
-    "webNavigation",
-    "tabs"
+    "scripting"
   ],
-  "host_permissions": [
-    "*://*.youtube.com/*"
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "css": ["styles.css"],
+      "js": ["script.js"]
+    }
   ],
-  "background": {
-    "service_worker": "background.js"
-  },
   "icons": {
-    "128": "icon.png"
+      "128": "icon.png"
   }
 }
