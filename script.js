@@ -147,9 +147,8 @@ async function initExtension() {
 if (!sessionStorage.getItem("videoEnlargerFreshPage") || sessionStorage.getItem("videoEnlargerFreshPage") == "false") {
     sessionStorage.setItem("videoEnlargerFreshPage", "true") // Set videoEnlargerFreshPage to true
 
-    redirect_url = document.URL+"&videoEnlargerFreshPage=true"
-    console.log("Redirect to", redirect_url)
-    window.location.replace(redirect_url)
+    console.log("Redirecting...")
+    window.location.replace(document.URL)
 } else {
     sessionStorage.setItem("videoEnlargerFreshPage", "false") // Set videoEnlargerFreshPage to false
     console.log("No redirect")
