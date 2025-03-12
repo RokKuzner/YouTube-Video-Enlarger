@@ -143,15 +143,8 @@ async function initExtension() {
 
 };
 
-// Check if the page is "fresh"
-if (!sessionStorage.getItem("videoEnlargerFreshPage") || sessionStorage.getItem("videoEnlargerFreshPage") == "false") {
-    sessionStorage.setItem("videoEnlargerFreshPage", "true") // Set videoEnlargerFreshPage to true
-
-    console.log("Redirecting...")
-    window.location.replace(document.URL)
-} else {
-    sessionStorage.setItem("videoEnlargerFreshPage", "false") // Set videoEnlargerFreshPage to false
-    console.log("No redirect")
-}
-
-initExtension()
+window.addEventListener("load", () => {
+    if (String(document.URL).includes("/watch?v=")) {
+        initExtension()
+    }
+})
