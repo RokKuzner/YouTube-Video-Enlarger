@@ -1,5 +1,9 @@
 async function initExtension() {
+    if (!String(document.URL).includes("/watch?v=")) {return 0}
+
     reset_player_dimensions()
+
+    let active_on_url = document.URL
 
     let isResizing = false;
     let startX;
@@ -33,6 +37,9 @@ async function initExtension() {
     }
 
     function resize_elements(width) {
+        // Check if the current url is the same as the one the extension was initialized on
+        if (document.URL != active_on_url) {return 0}
+
         if (width < min_video_width) { width = min_video_width }
 
         let height = Math.floor(width / width_height_ratio)
@@ -152,7 +159,15 @@ function reset_player_dimensions() {
 }
 
 window.addEventListener("load", () => {
-    if (String(document.URL).includes("/watch?v=")) {
+    initExtension()
+})
+
+// Observe for location changes
+let last_url = document.URL
+const location_change_observer = new MutationObserver(() => {
+    if (document.URL !== last_url) {
+        last_url = document.URL
         initExtension()
     }
 })
+location_change_observer.observe(document, { subtree: true, childList: true })
