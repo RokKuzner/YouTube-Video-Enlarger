@@ -156,6 +156,11 @@ function reset_player_dimensions() {
     try{ document.querySelector("#player-container-inner").style.height = "0px !important" } catch {}
 
     try{ document.querySelector("#movie_player > div.html5-video-container").style.height = "0px !important" } catch {}
+
+    try {
+        let resizer_element = document.querySelector("#resizer-element")
+        resizer_element.parentNode.removeChild(resizer_element)
+    } catch {}
 }
 
 window.addEventListener("load", () => {
