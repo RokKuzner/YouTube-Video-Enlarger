@@ -1,7 +1,7 @@
 async function initExtension() {
     if (!String(document.URL).includes("/watch?v=")) {return 0}
 
-    reset_player_dimensions()
+    reset_changes()
 
     let active_on_url = document.URL
 
@@ -149,7 +149,7 @@ async function initExtension() {
 };
 
 
-function reset_player_dimensions() {
+function reset_changes() {
     try{ document.querySelector("#container").style.width = "100% !important" } catch {}
     try{ document.querySelector("#container").style.height = "100% !important" } catch {}
 
