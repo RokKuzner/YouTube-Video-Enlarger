@@ -1,3 +1,44 @@
+const custom_css = `
+body {
+    overflow-x: hidden;
+}
+
+#resizer-element {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 5px; /* Width of the resizer bar */
+    background-color: #ddd;
+    cursor: ew-resize; /* Cursor changes on hover */
+}
+
+#player {
+    position: absolute !important;
+    left: 50% !important;
+    top: 100px !important;
+    transform: translate(-50%, 0) !important;
+}
+
+#below {
+    position: absolute !important;
+    left: 50% !important;
+    transform: translate(-50%, 0) !important;
+}
+
+#secondary {
+    padding: 0 !important;
+    margin: 0 !important;
+    position: absolute !important;
+    z-index: 11 !important;
+}
+
+#playlist {
+    margin: 0 !important;
+}
+`
+
 async function initExtension() {
     // Check if the current page is a youtube video page
     if (!String(document.URL).includes("/watch?v=")) {return 0}
@@ -92,8 +133,19 @@ async function initExtension() {
         bottom_bar.style.left = `${bottom_bar_left_value}px`
     }
 
+    function inject_css() {
+        style_element = document.createElement("style")
+        style_element.textContent = custom_css
+        style_element.id = "video-enlarger-extension-custom-style"
+
+        document.body.appendChild(style_element)
+    }
+
     // Wait for the page to be fully loaded
     await await_loaded_video()
+
+    // Inject the custom css
+    inject_css()
 
     // Get all necesary elements
     let video_element = document.querySelector("#movie_player > div.html5-video-container > video")
@@ -164,6 +216,11 @@ function reset_changes() {
     try {
         let resizer_element = document.querySelector("#resizer-element")
         resizer_element.parentNode.removeChild(resizer_element)
+    } catch {}
+
+    try {
+        let style_element = document.querySelector("#video-enlarger-extension-custom-style")
+        style_element.parentNode.removeChild(style_element)
     } catch {}
 }
 
