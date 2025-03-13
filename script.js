@@ -1,4 +1,6 @@
 async function initExtension() {
+    reset_player_dimensions()
+
     let isResizing = false;
     let startX;
     let startWidth;
@@ -138,6 +140,16 @@ async function initExtension() {
     }, 500)
 
 };
+
+
+function reset_player_dimensions() {
+    try{ document.querySelector("#container").style.width = "100% !important" } catch {}
+    try{ document.querySelector("#container").style.height = "100% !important" } catch {}
+
+    try{ document.querySelector("#player-container-inner").style.height = "0px !important" } catch {}
+
+    try{ document.querySelector("#movie_player > div.html5-video-container").style.height = "0px !important" } catch {}
+}
 
 window.addEventListener("load", () => {
     if (String(document.URL).includes("/watch?v=")) {
