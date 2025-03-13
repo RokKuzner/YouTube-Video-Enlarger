@@ -1,10 +1,14 @@
 async function initExtension() {
+    // Check if the current page is a youtube video page
     if (!String(document.URL).includes("/watch?v=")) {return 0}
 
+    // Reset all chenges
     reset_changes()
 
+    // Save the desiganted url for this instance of the extension
     let active_on_url = document.URL
 
+    // Initialize resizing variables
     let isResizing = false;
     let startX;
     let startWidth;
