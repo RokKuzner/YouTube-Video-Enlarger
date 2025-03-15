@@ -145,7 +145,7 @@ async function initExtension() {
 
     function set_fullscreen() {
         // Calculate width and height assuming width is larger
-        let width = document.body.offsetWidth
+        let width = window.innerWidth
         let height = Math.floor(width / width_height_ratio)
 
         // Handle videos where height is larger that width
