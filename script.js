@@ -41,7 +41,7 @@ body {
 
 async function initExtension() {
     // Check if the current page is a youtube video page
-    if (!String(document.URL).includes("/watch?v=")) {return 0}
+    if (!String(document.URL).includes("/watch?v=")) { return 0 }
 
     // Reset all chenges
     reset_changes()
@@ -83,7 +83,8 @@ async function initExtension() {
 
     function resize_elements(width) {
         // Check if the current url is the same as the one the extension was initialized on
-        if (document.URL != active_on_url) {return 0}
+        // Check if the video is in full screen mode
+        if (document.URL != active_on_url || document.fullscreenElement) { console.log("pasing"); return 0 }
 
         if (width < min_video_width) { width = min_video_width }
 
@@ -102,7 +103,7 @@ async function initExtension() {
     function resize(e) {
         if (!isResizing) return;
 
-        let width = startWidth + (e.clientX - startX)*2;
+        let width = startWidth + (e.clientX - startX) * 2;
         resize_elements(width)
     }
 
@@ -113,13 +114,13 @@ async function initExtension() {
     }
 
     function position_playlist_elements() {
-        if (!secondary_contnet_container) {return}
+        if (!secondary_contnet_container) { return }
 
         let top_value = player_element.offsetTop + player_element.offsetHeight + 10
         secondary_contnet_container.style.top = `${top_value}px`
     }
 
-    function position_bottom_elements() {    
+    function position_bottom_elements() {
         let top_value = secondary_contnet_container.offsetTop + secondary_contnet_container.offsetHeight
         bottom_content.style.top = `${top_value}px`
     }
@@ -178,7 +179,7 @@ async function initExtension() {
     console.log("WH ratio:", width_height_ratio)
 
     // Remove the side content
-    if (related_videos_container) {related_videos_container.parentNode.removeChild(related_videos_container)}
+    if (related_videos_container) { related_videos_container.parentNode.removeChild(related_videos_container) }
     // Adjust the elements to the new size
     resize_elements(Number(window.getComputedStyle(container_element).width.slice(0, -2)))
 
@@ -186,7 +187,7 @@ async function initExtension() {
     bottom_content.style.width = `${min_video_width}px`
 
     // Change the width of playlist items
-    if (secondary_contnet_container) {secondary_contnet_container.style.width = `${min_video_width}px`}
+    if (secondary_contnet_container) { secondary_contnet_container.style.width = `${min_video_width}px` }
 
     // Implement the resizing
     resizer_element.addEventListener('mousedown', (e) => {
@@ -206,22 +207,22 @@ async function initExtension() {
 
 
 function reset_changes() {
-    try{ document.querySelector("#container").style.width = "100% !important" } catch {}
-    try{ document.querySelector("#container").style.height = "100% !important" } catch {}
+    try { document.querySelector("#container").style.width = "100% !important" } catch { }
+    try { document.querySelector("#container").style.height = "100% !important" } catch { }
 
-    try{ document.querySelector("#player-container-inner").style.height = "0px !important" } catch {}
+    try { document.querySelector("#player-container-inner").style.height = "0px !important" } catch { }
 
-    try{ document.querySelector("#movie_player > div.html5-video-container").style.height = "0px !important" } catch {}
+    try { document.querySelector("#movie_player > div.html5-video-container").style.height = "0px !important" } catch { }
 
     try {
         let resizer_element = document.querySelector("#resizer-element")
         resizer_element.parentNode.removeChild(resizer_element)
-    } catch {}
+    } catch { }
 
     try {
         let style_element = document.querySelector("#video-enlarger-extension-custom-style")
         style_element.parentNode.removeChild(style_element)
-    } catch {}
+    } catch { }
 }
 
 window.addEventListener("load", () => {
