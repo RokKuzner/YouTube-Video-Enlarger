@@ -86,7 +86,7 @@ async function initExtension() {
         if (document.URL != active_on_url) { return 0 }
 
         // Check if the video is in full screen mode
-        if (video_element.offsetWidth == document.body.offsetWidth || video_element.offsetHeight == window.innerHeight) { set_fullscreen(); return 0; }
+        if (document.fullscreenElement) { return 0; }
 
         if (width < min_video_width) { width = min_video_width }
 
@@ -146,23 +146,12 @@ async function initExtension() {
     }
 
     function set_fullscreen() {
-        // Calculate width and height assuming width is larger
-        let width = window.innerWidth
-        let height = Math.floor(width / width_height_ratio)
-        let top_val = Math.floor((window.innerHeight - height) / 2)
+        while (!document.fullscreenElement) {}
 
-        // Handle videos where height is larger that width
-        if (window.innerHeight < height) {
-            height = window.innerHeight
-            width = Math.floor(height * width_height_ratio)
-        }
+        reset_video_size()
 
-        // Resize video elements to full screen and position them to center
-        for (let element of elements_to_resize) {
-            element.style.width = width + "px"
-            element.style.height = height + "px"
-            element.style.top = top_val + "px"
-        }
+        document.querySelector("#movie_player").style.width = window.innerWidth + "px"
+        document.querySelector("#movie_player").style.height = window.innerHeight + "px"
 
         // Hide other elements
         secondary_contnet_container.style.display = "none"
@@ -172,7 +161,7 @@ async function initExtension() {
 
     function handle_full_screen_change() {
         if (document.fullscreenElement) {
-            set_fullscreen()
+            setTimeout(set_fullscreen, 10);
         } else {
             // Unhide other elements
             secondary_contnet_container.style.display = ""
