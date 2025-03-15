@@ -149,6 +149,7 @@ async function initExtension() {
         // Calculate width and height assuming width is larger
         let width = window.innerWidth
         let height = Math.floor(width / width_height_ratio)
+        let top_val = Math.floor((window.innerHeight - height) / 2)
 
         // Handle videos where height is larger that width
         if (window.innerHeight < height) {
@@ -160,7 +161,7 @@ async function initExtension() {
         for (let element of elements_to_resize) {
             element.style.width = width + "px"
             element.style.height = height + "px"
-            element.style.top = Math.floor((window.innerHeight - element.offsetHeight) / 2) + "px"
+            element.style.top = top_val + "px"
         }
 
         // Hide other elements
