@@ -143,13 +143,6 @@ async function initExtension() {
     }
 
     function set_fullscreen() {
-        let elements_to_set_fullscreen = [
-            document.querySelector("#movie_player > div.html5-video-container"),
-            document.querySelector("#movie_player"),
-            document.querySelector("#container"),
-            document.querySelector("#ytd-player"),
-        ]
-
         // Calculate width and height assuming width is larger
         let width = document.body.offsetWidth
         let height = Math.floor(width / width_height_ratio)
@@ -160,10 +153,11 @@ async function initExtension() {
             width = Math.floor(height * width_height_ratio)
         }
 
-        // Resize video elements to full screen
-        for (let element of elements_to_set_fullscreen) {
+        // Resize video elements to full screen and position them to center
+        for (let element of elements_to_resize) {
             element.style.width = width + "px"
             element.style.height = height + "px"
+            element.style.top = Math.floor((window.innerHeight - element.offsetHeight) / 2) + "px"
         }
     }
 
