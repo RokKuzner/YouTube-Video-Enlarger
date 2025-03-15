@@ -113,15 +113,15 @@ async function initExtension() {
         document.removeEventListener('mouseup', stopResize);
     }
 
-    function position_playlist_elements() {
+    function position_playlist_elements(top_value = null) {
         if (!secondary_contnet_container) { return }
 
-        let top_value = player_element.offsetTop + player_element.offsetHeight + 10
+        if (!top_value) { top_value = player_element.offsetTop + player_element.offsetHeight + 10 }
         secondary_contnet_container.style.top = `${top_value}px`
     }
 
-    function position_bottom_elements() {
-        let top_value = secondary_contnet_container.offsetTop + secondary_contnet_container.offsetHeight
+    function position_bottom_elements(top_value = null) {
+        if (!top_value) { top_value = secondary_contnet_container.offsetTop + secondary_contnet_container.offsetHeight }
         bottom_content.style.top = `${top_value}px`
     }
 
