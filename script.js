@@ -142,6 +142,36 @@ async function initExtension() {
         document.body.appendChild(style_element)
     }
 
+    function set_fullscreen() {
+        let elements_to_set_fullscreen = [
+            document.querySelector("#movie_player > div.html5-video-container"),
+            document.querySelector("#movie_player"),
+            document.querySelector("#container"),
+            document.querySelector("#ytd-player"),
+        ]
+
+        let width = document.body.offsetWidth
+        let height = Math.floor(width / width_height_ratio)
+
+        if (height > window.innerHeight) {
+            height = window.innerHeight
+            width = Math.floor(height * width_height_ratio)
+        }
+
+        for (let element of elements_to_set_fullscreen) {
+            element.style.width = width + "px"
+            element.style.height = height + "px"
+        }
+    }
+
+    function handle_full_screen_change() {
+        if (document.fullscreenElement) {
+            set_fullscreen()
+        } else {
+            resize_elements(min_video_width)
+        }
+    }
+
     // Wait for the page to be fully loaded
     await await_loaded_video()
 
@@ -197,6 +227,8 @@ async function initExtension() {
         document.addEventListener('mousemove', resize);
         document.addEventListener('mouseup', stopResize);
     });
+
+    document.addEventListener('fullscreenchange', handle_full_screen_change);
 
     // Resize elements every 0.5s for additional redundancy
     setInterval(() => {
