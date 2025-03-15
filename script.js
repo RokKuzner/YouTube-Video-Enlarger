@@ -93,6 +93,7 @@ async function initExtension() {
         for (let el of elements_to_resize) {
             el.style.width = width + 'px';
             el.style.height = height + 'px';
+            el.style.top = "0px";
         }
 
         position_playlist_elements()
