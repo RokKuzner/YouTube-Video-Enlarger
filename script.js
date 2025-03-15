@@ -149,7 +149,7 @@ async function initExtension() {
         let height = Math.floor(width / width_height_ratio)
 
         // Handle videos where height is larger that width
-        if (height > window.innerHeight) {
+        if (window.innerHeight < height) {
             height = window.innerHeight
             width = Math.floor(height * width_height_ratio)
         }
