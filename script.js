@@ -84,7 +84,7 @@ async function initExtension() {
     function resize_elements(width) {
         // Check if the current url is the same as the one the extension was initialized on
         // Check if the video is in full screen mode
-        if (document.URL != active_on_url || video_element.offsetWidth == document.body.offsetWidth || video_element.offsetHeight == window.innerHeight) { console.log("passing for", active_on_url); return 0 }
+        if (document.URL != active_on_url) { return 0 }
 
         if (width < min_video_width) { width = min_video_width }
 
