@@ -150,14 +150,17 @@ async function initExtension() {
             document.querySelector("#ytd-player"),
         ]
 
+        // Calculate width and height assuming width is larger
         let width = document.body.offsetWidth
         let height = Math.floor(width / width_height_ratio)
 
+        // Handle videos where height is larger that width
         if (height > window.innerHeight) {
             height = window.innerHeight
             width = Math.floor(height * width_height_ratio)
         }
 
+        // Resize video elements to full screen
         for (let element of elements_to_set_fullscreen) {
             element.style.width = width + "px"
             element.style.height = height + "px"
