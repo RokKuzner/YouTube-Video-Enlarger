@@ -205,14 +205,17 @@ async function initExtension() {
 
 };
 
-
-function reset_changes() {
+function reset_video_size() {
     try { document.querySelector("#container").style.width = "100% !important" } catch { }
     try { document.querySelector("#container").style.height = "100% !important" } catch { }
 
     try { document.querySelector("#player-container-inner").style.height = "0px !important" } catch { }
 
     try { document.querySelector("#movie_player > div.html5-video-container").style.height = "0px !important" } catch { }
+}
+
+function reset_changes() {
+    reset_video_size()
 
     try {
         let resizer_element = document.querySelector("#resizer-element")
