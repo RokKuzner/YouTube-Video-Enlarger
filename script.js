@@ -159,12 +159,22 @@ async function initExtension() {
             element.style.height = height + "px"
             element.style.top = Math.floor((window.innerHeight - element.offsetHeight) / 2) + "px"
         }
+
+        // Hide other elements
+        secondary_contnet_container.style.display = "none"
+        bottom_content.style.display = "none"
+        resizer_element.style.display = "none"
     }
 
     function handle_full_screen_change() {
         if (document.fullscreenElement) {
             set_fullscreen()
         } else {
+            // Unhide other elements
+            secondary_contnet_container.style.display = ""
+            bottom_content.style.display = ""
+            resizer_element.style.display = ""
+
             resize_elements(min_video_width)
         }
     }
