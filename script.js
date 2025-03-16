@@ -141,14 +141,6 @@ async function initExtension() {
         bottom_bar.style.left = `${bottom_bar_left_value}px`
     }
 
-    function inject_css() {
-        style_element = document.createElement("style")
-        style_element.textContent = custom_css
-        style_element.id = "video-enlarger-extension-custom-style"
-
-        document.body.appendChild(style_element)
-    }
-
     function set_fullscreen() {
         while (!document.fullscreenElement) { }
 
@@ -262,6 +254,14 @@ function reset_changes() {
         let style_element = document.querySelector("#video-enlarger-extension-custom-style")
         style_element.parentNode.removeChild(style_element)
     } catch { }
+}
+
+function inject_css() {
+    style_element = document.createElement("style")
+    style_element.textContent = custom_css
+    style_element.id = "video-enlarger-extension-custom-style"
+
+    document.body.appendChild(style_element)
 }
 
 function get_url_parameters() {
