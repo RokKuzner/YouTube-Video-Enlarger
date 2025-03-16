@@ -288,6 +288,7 @@ function get_video_id() {
 }
 
 window.addEventListener("load", () => {
+    inject_css()
     initExtension()
 })
 
