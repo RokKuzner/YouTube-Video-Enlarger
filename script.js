@@ -47,7 +47,8 @@ async function initExtension() {
     reset_changes()
 
     // Save the desiganted url for this instance of the extension
-    let active_on_url = document.URL
+    let active_on_video_id = get_video_id()
+    let is_active = true
 
     // Initialize resizing variables
     let isResizing = false;
@@ -82,8 +83,11 @@ async function initExtension() {
     }
 
     function resize_elements(width) {
+        // Check if this instance of the extension should be active
+        if (!is_active) { return 0 }
+
         // Check if the current url is the same as the one the extension was initialized on
-        if (document.URL != active_on_url) { return 0 }
+        if (get_video_id() != active_on_video_id) { is_active = false; return 0 }
 
         // Check if the video is in full screen mode
         if (document.fullscreenElement) { return 0; }
