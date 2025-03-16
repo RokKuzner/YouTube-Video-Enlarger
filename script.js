@@ -146,7 +146,7 @@ async function initExtension() {
     }
 
     function set_fullscreen() {
-        while (!document.fullscreenElement) {}
+        while (!document.fullscreenElement) { }
 
         reset_video_size()
 
