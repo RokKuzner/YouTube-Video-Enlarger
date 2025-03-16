@@ -265,11 +265,15 @@ window.addEventListener("load", () => {
 })
 
 // Observe for location changes
-let last_url = document.URL
-const location_change_observer = new MutationObserver(() => {
-    if (document.URL !== last_url) {
-        last_url = document.URL
-        initExtension()
-    }
-})
-location_change_observer.observe(document, { subtree: true, childList: true })
+function observe_url_changes() {
+    let last_url = document.URL
+    const location_change_observer = new MutationObserver(() => {
+        if (document.URL !== last_url) {
+            last_url = document.URL
+            initExtension()
+        }
+    })
+    location_change_observer.observe(document, { subtree: true, childList: true })
+}
+
+observe_url_changes()
