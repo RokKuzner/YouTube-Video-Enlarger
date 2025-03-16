@@ -257,6 +257,8 @@ function reset_changes() {
 }
 
 function inject_css() {
+    if (document.querySelector("#video-enlarger-extension-custom-style")) {return 0}
+
     style_element = document.createElement("style")
     style_element.textContent = custom_css
     style_element.id = "video-enlarger-extension-custom-style"
