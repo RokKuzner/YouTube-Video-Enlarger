@@ -260,6 +260,27 @@ function reset_changes() {
     } catch { }
 }
 
+function get_url_parameters() {
+    let query_string = new URLSearchParams(document.URL.split("?")[1])
+    let parameters = query_string.entries()
+    let parameters_dict = {}
+    for (let param_pair of parameters) {
+        parameters_dict[param_pair[0]] = param_pair[1]
+    }
+
+    return parameters_dict
+}
+
+function get_video_id() {
+    parameters = get_url_parameters()
+
+    if (!parameters["v"]) {
+        return null
+    } else {
+        return parameters["v"]
+    }
+}
+
 window.addEventListener("load", () => {
     initExtension()
 })
