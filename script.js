@@ -179,8 +179,8 @@ async function initExtension() {
     let container_element = document.querySelector("#movie_player")
     let bottom_bar = document.querySelector("#movie_player > div.ytp-chrome-bottom")
     let related_videos_container = document.querySelector("#related")
-    let secondary_contnet_container = document.querySelector("#secondary")
-    let bottom_content = document.querySelector("#below")
+    let secondary_contnet_container = document.querySelector("#page-manager > ytd-watch-flexy > #columns > #secondary")
+    let bottom_content = document.querySelector("#page-manager > ytd-watch-flexy > #columns > #primary > #primary-inner > #below")
     let player_element = document.querySelector("#player")
 
     let elements_to_resize = [
