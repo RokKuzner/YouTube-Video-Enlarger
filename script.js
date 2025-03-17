@@ -187,7 +187,7 @@ async function initExtension() {
         document.querySelector("#movie_player > div.html5-video-container > video"),
         document.querySelector("#movie_player > div.html5-video-container"),
         document.querySelector("#movie_player"),
-        document.querySelector("#container"),
+        document.querySelector("#ytd-player > #container"),
         document.querySelector("#ytd-player"),
         document.querySelector("#player-container-inner"),
         document.querySelector("#player-container-outer")
