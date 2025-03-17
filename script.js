@@ -40,11 +40,11 @@ body {
 `
 
 async function initExtension() {
-    // Check if the current page is a youtube video page
-    if (!String(document.URL).includes("/watch?v=")) { return 0 }
-
     // Reset all chenges
     reset_changes()
+
+    // Check if the current page is a youtube video page
+    if (!String(document.URL).includes("/watch?v=") || String(document.URL).includes("music.youtube.com")) { return 0 }
 
     // Save the desiganted url for this instance of the extension
     let active_on_video_id = get_video_id()
