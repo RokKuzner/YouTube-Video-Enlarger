@@ -160,8 +160,8 @@ async function initExtension() {
         document.querySelector("#movie_player").style.height = window.innerHeight + "px"
 
         // Hide other elements
-        secondary_contnet_container.style.display = "none"
-        bottom_content.style.display = "none"
+        if (secondary_contnet_container) { secondary_contnet_container.style.display = "none" }
+        if (bottom_content) { bottom_content.style.display = "none" }
         resizer_element.style.display = "none"
     }
 
