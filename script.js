@@ -172,6 +172,18 @@ async function initExtension() {
         }
     }
 
+    function get_elements_to_resize() {
+        return [
+            document.querySelector("#movie_player > div.html5-video-container > video"),
+            document.querySelector("#movie_player > div.html5-video-container"),
+            document.querySelector("#movie_player"),
+            document.querySelector("#ytd-player > #container"),
+            document.querySelector("#ytd-player"),
+            document.querySelector("#player-container-inner"),
+            document.querySelector("#player-container-outer")
+        ]
+    }
+
     // Wait for the page to be fully loaded
     await await_loaded_video()
 
@@ -187,15 +199,7 @@ async function initExtension() {
     let bottom_content = document.querySelector("#page-manager > ytd-watch-flexy > #columns > #primary > #primary-inner > #below")
     let player_element = document.querySelector("#player")
 
-    let elements_to_resize = [
-        document.querySelector("#movie_player > div.html5-video-container > video"),
-        document.querySelector("#movie_player > div.html5-video-container"),
-        document.querySelector("#movie_player"),
-        document.querySelector("#ytd-player > #container"),
-        document.querySelector("#ytd-player"),
-        document.querySelector("#player-container-inner"),
-        document.querySelector("#player-container-outer")
-    ]
+    let elements_to_resize = get_elements_to_resize()
 
     // Get all necesary values
     let min_video_width = Number(window.getComputedStyle(video_element).width.slice(0, -2))
