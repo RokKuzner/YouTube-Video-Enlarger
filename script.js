@@ -92,7 +92,7 @@ async function initExtension() {
         // Check if the video is in full screen mode
         if (document.fullscreenElement) { return 0; }
 
-        if (width < min_video_width) { width = min_video_width }
+        //if (width < min_video_width) { width = min_video_width }
 
         let height = Math.floor(width / width_height_ratio)
 
