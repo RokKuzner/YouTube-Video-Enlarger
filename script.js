@@ -97,12 +97,10 @@ async function initExtension() {
         let height = Math.floor(width / width_height_ratio)
 
         for (let el of elements_to_resize) {
-            try {
+            if (el != null) {
                 el.style.width = width + 'px';
                 el.style.height = height + 'px';
                 el.style.top = "0px";
-            } catch (e) {
-                console.log("Error when resizing element", el, e)
             }
         }
 
