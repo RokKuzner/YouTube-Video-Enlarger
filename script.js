@@ -157,7 +157,7 @@ async function initExtension() {
         // Get all necesary elements
         let player_element = document.querySelector("#player")
         let bottom_bar = document.querySelector("#movie_player > div.ytp-chrome-bottom")
-    
+
         let bottom_bar_width = bottom_bar.offsetWidth
         let video_player_width = player_element.offsetWidth
 
@@ -239,6 +239,7 @@ async function initExtension() {
 
     // Remove the side content
     if (related_videos_container) { related_videos_container.parentNode.removeChild(related_videos_container) }
+
     // Adjust the elements to the new size
     resize_elements(Number(window.getComputedStyle(container_element).width.slice(0, -2)))
 
