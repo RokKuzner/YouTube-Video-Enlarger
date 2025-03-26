@@ -123,6 +123,10 @@ async function initExtension() {
     }
 
     function position_playlist_elements() {
+        // Get all necesary elements
+        let secondary_contnet_container = document.querySelector("#page-manager > ytd-watch-flexy > #columns > #secondary")
+        let player_element = document.querySelector("#player")
+
         if (!secondary_contnet_container) { return }
 
         top_value = player_element.offsetTop + player_element.offsetHeight + 10
@@ -131,6 +135,11 @@ async function initExtension() {
     }
 
     function position_bottom_elements() {
+        // Get all necesary elements
+        let bottom_content = document.querySelector("#page-manager > ytd-watch-flexy > #columns > #primary > #primary-inner > #below")
+        let secondary_contnet_container = document.querySelector("#page-manager > ytd-watch-flexy > #columns > #secondary")
+        let player_element = document.querySelector("#player")
+
         if (!bottom_content) { return }
 
         if (secondary_contnet_container) {
@@ -143,6 +152,9 @@ async function initExtension() {
     }
 
     function position_bottom_bar() {
+        // Get all necesary elements
+        let player_element = document.querySelector("#player")
+    
         let bottom_bar_width = bottom_bar.offsetWidth
         let video_player_width = player_element.offsetWidth
 
@@ -203,7 +215,6 @@ async function initExtension() {
     let related_videos_container = document.querySelector("#related")
     let secondary_contnet_container = document.querySelector("#page-manager > ytd-watch-flexy > #columns > #secondary")
     let bottom_content = document.querySelector("#page-manager > ytd-watch-flexy > #columns > #primary > #primary-inner > #below")
-    let player_element = document.querySelector("#player")
 
     let elements_to_resize = get_elements_to_resize()
 
