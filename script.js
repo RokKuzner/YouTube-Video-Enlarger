@@ -241,7 +241,7 @@ async function initExtension() {
     if (related_videos_container) { related_videos_container.parentNode.removeChild(related_videos_container) }
 
     // Adjust the elements to the new size
-    resize_elements(Number(window.getComputedStyle(container_element).width.slice(0, -2)))
+    resize_elements(Number(window.getComputedStyle(video_element).width.slice(0, -2)))
 
     // Implement the resizing
     resizer_element.addEventListener('mousedown', (e) => {
