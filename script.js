@@ -224,7 +224,7 @@ async function initExtension() {
     resize_elements(Number(window.getComputedStyle(container_element).width.slice(0, -2)))
 
     // Change the width of bottom content
-    bottom_content.style.width = `${min_video_width}px`
+    if (bottom_content) { bottom_content.style.width = `${min_video_width}px` }
 
     // Change the width of playlist items
     if (secondary_contnet_container) { secondary_contnet_container.style.width = `${min_video_width}px` }
