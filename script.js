@@ -122,15 +122,23 @@ async function initExtension() {
         document.removeEventListener('mouseup', stopResize);
     }
 
-    function position_playlist_elements(top_value = null) {
+    function position_playlist_elements() {
         if (!secondary_contnet_container) { return }
 
-        if (!top_value) { top_value = player_element.offsetTop + player_element.offsetHeight + 10 }
+        top_value = player_element.offsetTop + player_element.offsetHeight + 10
+
         secondary_contnet_container.style.top = `${top_value}px`
     }
 
-    function position_bottom_elements(top_value = null) {
-        if (!top_value) { top_value = secondary_contnet_container.offsetTop + secondary_contnet_container.offsetHeight }
+    function position_bottom_elements() {
+        if (!bottom_content) { return }
+
+        if (secondary_contnet_container) {
+            top_value = secondary_contnet_container.offsetTop + secondary_contnet_container.offsetHeight
+        } else {
+            top_value = player_element.offsetTop + player_element.offsetHeight + 10
+        }
+
         bottom_content.style.top = `${top_value}px`
     }
 
