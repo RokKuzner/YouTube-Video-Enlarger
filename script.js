@@ -132,6 +132,7 @@ async function initExtension() {
         top_value = player_element.offsetTop + player_element.offsetHeight + 10
 
         secondary_contnet_container.style.top = `${top_value}px`
+        secondary_contnet_container.style.width = `${min_video_width}px`
     }
 
     function position_bottom_elements() {
@@ -239,9 +240,6 @@ async function initExtension() {
     if (related_videos_container) { related_videos_container.parentNode.removeChild(related_videos_container) }
     // Adjust the elements to the new size
     resize_elements(Number(window.getComputedStyle(container_element).width.slice(0, -2)))
-
-    // Change the width of playlist items
-    if (secondary_contnet_container) { secondary_contnet_container.style.width = `${min_video_width}px` }
 
     // Implement the resizing
     resizer_element.addEventListener('mousedown', (e) => {
