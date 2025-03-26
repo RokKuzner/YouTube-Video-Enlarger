@@ -169,6 +169,7 @@ async function initExtension() {
     function set_fullscreen() {
         // Get all necesary elements
         let bottom_content = document.querySelector("#page-manager > ytd-watch-flexy > #columns > #primary > #primary-inner > #below")
+        let secondary_contnet_container = document.querySelector("#page-manager > ytd-watch-flexy > #columns > #secondary")
 
         while (!document.fullscreenElement) { }
 
@@ -186,6 +187,7 @@ async function initExtension() {
     function handle_full_screen_change() {
         // Get all necesary elements
         let bottom_content = document.querySelector("#page-manager > ytd-watch-flexy > #columns > #primary > #primary-inner > #below")
+        let secondary_contnet_container = document.querySelector("#page-manager > ytd-watch-flexy > #columns > #secondary")
 
         if (document.fullscreenElement) {
             setTimeout(set_fullscreen, 10);
@@ -221,7 +223,6 @@ async function initExtension() {
     let video_element = document.querySelector("#movie_player > div.html5-video-container > video")
     let container_element = document.querySelector("#movie_player")
     let related_videos_container = document.querySelector("#related")
-    let secondary_contnet_container = document.querySelector("#page-manager > ytd-watch-flexy > #columns > #secondary")
 
     let elements_to_resize = get_elements_to_resize()
 
