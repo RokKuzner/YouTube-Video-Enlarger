@@ -240,8 +240,11 @@ async function initExtension() {
 
     document.addEventListener('fullscreenchange', handle_full_screen_change);
 
-    // Resize elements every 0.5s for additional redundancy
+    // Every 0.5s:
+    //  - Try to get elements to resize if any are missing
+    //  - Resize elements for additional redundancy
     setInterval(() => {
+        if (elements_to_resize.includes(null)) { elements_to_resize = get_elements_to_resize() }
         resize_elements(video_element.offsetWidth)
     }, 500)
 
