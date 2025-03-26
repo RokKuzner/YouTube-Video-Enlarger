@@ -154,6 +154,7 @@ async function initExtension() {
     function position_bottom_bar() {
         // Get all necesary elements
         let player_element = document.querySelector("#player")
+        let bottom_bar = document.querySelector("#movie_player > div.ytp-chrome-bottom")
     
         let bottom_bar_width = bottom_bar.offsetWidth
         let video_player_width = player_element.offsetWidth
@@ -211,7 +212,6 @@ async function initExtension() {
     // Get all necesary elements
     let video_element = document.querySelector("#movie_player > div.html5-video-container > video")
     let container_element = document.querySelector("#movie_player")
-    let bottom_bar = document.querySelector("#movie_player > div.ytp-chrome-bottom")
     let related_videos_container = document.querySelector("#related")
     let secondary_contnet_container = document.querySelector("#page-manager > ytd-watch-flexy > #columns > #secondary")
     let bottom_content = document.querySelector("#page-manager > ytd-watch-flexy > #columns > #primary > #primary-inner > #below")
