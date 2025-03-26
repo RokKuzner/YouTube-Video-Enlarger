@@ -149,6 +149,7 @@ async function initExtension() {
         }
 
         bottom_content.style.top = `${top_value}px`
+        bottom_content.style.width = `${min_video_width}px`
     }
 
     function position_bottom_bar() {
@@ -165,6 +166,9 @@ async function initExtension() {
     }
 
     function set_fullscreen() {
+        // Get all necesary elements
+        let bottom_content = document.querySelector("#page-manager > ytd-watch-flexy > #columns > #primary > #primary-inner > #below")
+
         while (!document.fullscreenElement) { }
 
         reset_video_size()
@@ -179,6 +183,9 @@ async function initExtension() {
     }
 
     function handle_full_screen_change() {
+        // Get all necesary elements
+        let bottom_content = document.querySelector("#page-manager > ytd-watch-flexy > #columns > #primary > #primary-inner > #below")
+
         if (document.fullscreenElement) {
             setTimeout(set_fullscreen, 10);
         } else {
@@ -214,7 +221,6 @@ async function initExtension() {
     let container_element = document.querySelector("#movie_player")
     let related_videos_container = document.querySelector("#related")
     let secondary_contnet_container = document.querySelector("#page-manager > ytd-watch-flexy > #columns > #secondary")
-    let bottom_content = document.querySelector("#page-manager > ytd-watch-flexy > #columns > #primary > #primary-inner > #below")
 
     let elements_to_resize = get_elements_to_resize()
 
@@ -233,9 +239,6 @@ async function initExtension() {
     if (related_videos_container) { related_videos_container.parentNode.removeChild(related_videos_container) }
     // Adjust the elements to the new size
     resize_elements(Number(window.getComputedStyle(container_element).width.slice(0, -2)))
-
-    // Change the width of bottom content
-    if (bottom_content) { bottom_content.style.width = `${min_video_width}px` }
 
     // Change the width of playlist items
     if (secondary_contnet_container) { secondary_contnet_container.style.width = `${min_video_width}px` }
