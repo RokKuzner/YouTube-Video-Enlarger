@@ -170,8 +170,8 @@ async function initExtension() {
             setTimeout(set_fullscreen, 10);
         } else {
             // Unhide other elements
-            secondary_contnet_container.style.display = ""
-            bottom_content.style.display = ""
+            if (secondary_contnet_container) { secondary_contnet_container.style.display = "" }
+            if (bottom_content) { bottom_content.style.display = "" }
             resizer_element.style.display = ""
 
             resize_elements(min_video_width)
